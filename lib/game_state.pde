@@ -1,4 +1,6 @@
 class GameState {
+  boolean keyIsDown = false;
+  
   // Global variables for the ball
   float ball_x;
   float ball_y;
@@ -9,5 +11,10 @@ class GameState {
   // Global variables for the paddle
   int paddle_width = 5;
   int paddle_height = 20;
-  float paddle_y;
+  float paddle_y = 40;
+  
+  void offset_paddle_y(offset) {
+    // Constrain paddle to screen
+    paddle_y = constrain(paddle_y + offset, paddle_height, height - paddle_height);
+  }
 }

@@ -27,9 +27,6 @@ void draw()
     state.dy = 0;
   }
   
-  // Constrain paddle to screen
-  state.paddle_y = constrain(mouseY, state.paddle_height, height-state.paddle_height);
-
   // Test to see if the ball is touching the paddle
   float py = width-dist_wall-state.paddle_width-state.ball_size;
   if(state.ball_x == py 
@@ -63,4 +60,20 @@ void draw()
   // Draw the paddle
   fill(153);
   rect(width-dist_wall, state.paddle_y, state.paddle_width, state.paddle_height);
+  
+  if (!state.keyIsDown) {
+    // float the paddle
+    state.offset_paddle_y(-0.5);
+  }
+}
+
+void keyPressed() {
+  if (keyCode == DOWN) {
+    state.keyIsDown = true;
+    state.offset_paddle_y(10);
+  }
+}
+
+void keyReleased(){
+  state.keyIsDown = false;
 }
