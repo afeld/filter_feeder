@@ -6,7 +6,7 @@ int dist_wall = 15;
 
 void setup()
 {
-  size(200, 200);
+  size(800, 600);
   rectMode(CENTER_RADIUS);
   ellipseMode(CENTER_RADIUS);
   noStroke();
@@ -22,10 +22,10 @@ void draw()
   background(51);
   
   if (state.keyIsDown) {
-    state.offset_paddle_y(2);
+    state.offset_paddle_y(5);
   } else {
     // float the paddle
-    state.offset_paddle_y(-0.5);
+    state.offset_paddle_y(-3);
   }
   
   state.ball_x += state.ball_dir * 1.0;

@@ -12,7 +12,7 @@ class GameState {
   
   // Global variables for the paddle
   int paddle_width = 5;
-  int paddle_height = 20;
+  int paddle_height = 40;
   float paddle_y = 40;
   
   ArrayList bubbles = new ArrayList();
