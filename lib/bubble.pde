@@ -1,6 +1,6 @@
 class Bubble {
   float BUBBLE_SIZE = 8.0;
-  float BUBBLE_STEP_X = 0.2;
+  float BUBBLE_STEP_X = 0.8;
   float BUBBLE_STEP_Y = 1.0;
   float pos_x;
   float pos_y = height;

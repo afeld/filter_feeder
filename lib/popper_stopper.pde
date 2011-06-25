@@ -13,8 +13,6 @@ void setup()
   smooth();
   state.ball_y = height/2;
   state.ball_x = 1;
-  
-  state.bubbles.add(new Bubble(width - 10));
 }
 
 void draw() 
@@ -26,6 +24,10 @@ void draw()
   } else {
     // float the paddle
     state.offset_paddle_y(-3);
+  }
+  
+  if (random(1) > 0.98) {
+    state.bubbles.add(new Bubble(random(width * 1.5)));
   }
   
   state.ball_x += state.ball_dir * 1.0;
