@@ -5,4 +5,9 @@ class GameState {
   float ball_dir = 1;
   float ball_size = 5;  // Radius
   float dy = 0;  // Direction
+  
+  // Global variables for the paddle
+  int paddle_width = 5;
+  int paddle_height = 20;
+  float paddle_y;
 }

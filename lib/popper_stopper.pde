@@ -2,10 +2,6 @@ import GameState;
 
 GameState state = new GameState();
 
-// Global variables for the paddle
-int paddle_width = 5;
-int paddle_height = 20;
-
 int dist_wall = 15;
 
 void setup()
@@ -32,13 +28,13 @@ void draw()
   }
   
   // Constrain paddle to screen
-  float paddle_y = constrain(mouseY, paddle_height, height-paddle_height);
+  state.paddle_y = constrain(mouseY, state.paddle_height, height-state.paddle_height);
 
   // Test to see if the ball is touching the paddle
-  float py = width-dist_wall-paddle_width-state.ball_size;
+  float py = width-dist_wall-state.paddle_width-state.ball_size;
   if(state.ball_x == py 
-     && state.ball_y > paddle_y - paddle_height - state.ball_size 
-     && state.ball_y < paddle_y + paddle_height + state.ball_size) {
+     && state.ball_y > state.paddle_y - state.paddle_height - state.ball_size 
+     && state.ball_y < state.paddle_y + state.paddle_height + state.ball_size) {
     state.ball_dir *= -1;
     if(mouseY != pmouseY) {
       state.dy = (mouseY-pmouseY)/2.0;
@@ -66,5 +62,5 @@ void draw()
   
   // Draw the paddle
   fill(153);
-  rect(width-dist_wall, paddle_y, paddle_width, paddle_height);  
+  rect(width-dist_wall, state.paddle_y, state.paddle_width, state.paddle_height);
 }
