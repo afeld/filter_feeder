@@ -9,8 +9,6 @@ void setup()
   ellipseMode(CENTER_RADIUS);
   noStroke();
   smooth();
-  state.ball_y = height/2;
-  state.ball_x = 1;
 }
 
 void draw() 
