@@ -18,19 +18,17 @@ void draw()
   background(51);
   
   if (state.keyIsDown) {
-    state.offset_paddle_y(5);
+    state.blobman.move_y(5);
   } else {
-    // float the paddle
-    state.offset_paddle_y(-3);
+    // float vertically
+    state.blobman.move_y(-3);
   }
   
   if (random(1) > 0.98) {
     state.bubbles.add(new Bubble(random(width * 1.5)));
   }
   
-  // Draw the paddle
-  fill(153);
-  rect(state.blobman.POS_X, state.blobman.pos_y, state.blobman.size_w, state.blobman.size_h);
+  state.blobman.draw();
   
   // Draw the bubbles
   for (int i = 0; i < state.bubbles.size(); i++) {

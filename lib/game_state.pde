@@ -14,9 +14,4 @@ class GameState {
   Blobman blobman = new Blobman();
   
   ArrayList bubbles = new ArrayList();
-  
-  void offset_paddle_y(offset) {
-    // Constrain paddle to screen
-    blobman.pos_y = constrain(blobman.pos_y + offset, blobman.size_h, height - blobman.size_h);
-  }
 }
