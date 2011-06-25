@@ -2,8 +2,6 @@ import GameState;
 
 GameState state = new GameState();
 
-int dist_wall = 15;
-
 void setup()
 {
   size(800, 600);
@@ -39,10 +37,10 @@ void draw()
   }
   
   // Test to see if the ball is touching the paddle
-  float py = width-dist_wall-state.paddle_width-state.ball_size;
+  float py = width-state.blobman.POS_X-state.blobman.size_w-state.ball_size;
   if(state.ball_x == py 
-     && state.ball_y > state.paddle_y - state.paddle_height - state.ball_size 
-     && state.ball_y < state.paddle_y + state.paddle_height + state.ball_size) {
+     && state.ball_y > state.blobman.pos_y - state.blobman.size_h - state.ball_size 
+     && state.ball_y < state.blobman.pos_y + state.blobman.size_h + state.ball_size) {
     state.ball_dir *= -1;
     if(mouseY != pmouseY) {
       state.dy = (mouseY-pmouseY)/2.0;
@@ -70,7 +68,7 @@ void draw()
   
   // Draw the paddle
   fill(153);
-  rect(width-dist_wall, state.paddle_y, state.paddle_width, state.paddle_height);
+  rect(state.blobman.POS_X, state.blobman.pos_y, state.blobman.size_w, state.blobman.size_h);
   
   // Draw the bubbles
   for (int i = 0; i < state.bubbles.size(); i++) {

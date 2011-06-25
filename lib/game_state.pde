@@ -1,4 +1,5 @@
 import Bubble;
+import Blobman;
 
 class GameState {
   boolean keyIsDown = false;
@@ -10,15 +11,12 @@ class GameState {
   float ball_size = 5;  // Radius
   float dy = 0;  // Direction
   
-  // Global variables for the paddle
-  int paddle_width = 5;
-  int paddle_height = 40;
-  float paddle_y = 40;
+  Blobman blobman = new Blobman();
   
   ArrayList bubbles = new ArrayList();
   
   void offset_paddle_y(offset) {
     // Constrain paddle to screen
-    paddle_y = constrain(paddle_y + offset, paddle_height, height - paddle_height);
+    blobman.pos_y = constrain(blobman.pos_y + offset, blobman.size_h, height - blobman.size_h);
   }
 }
