@@ -1,3 +1,5 @@
+import Bubble;
+
 class GameState {
   boolean keyIsDown = false;
   
@@ -12,6 +14,8 @@ class GameState {
   int paddle_width = 5;
   int paddle_height = 20;
   float paddle_y = 40;
+  
+  ArrayList bubbles = new ArrayList();
   
   void offset_paddle_y(offset) {
     // Constrain paddle to screen

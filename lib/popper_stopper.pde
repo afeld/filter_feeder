@@ -13,11 +13,20 @@ void setup()
   smooth();
   state.ball_y = height/2;
   state.ball_x = 1;
+  
+  state.bubbles.add(new Bubble(width - 10));
 }
 
 void draw() 
 {
   background(51);
+  
+  if (state.keyIsDown) {
+    state.offset_paddle_y(2);
+  } else {
+    // float the paddle
+    state.offset_paddle_y(-0.5);
+  }
   
   state.ball_x += state.ball_dir * 1.0;
   state.ball_y += state.dy;
@@ -61,11 +70,18 @@ void draw()
   fill(153);
   rect(width-dist_wall, state.paddle_y, state.paddle_width, state.paddle_height);
   
-  if (state.keyIsDown) {
-    state.offset_paddle_y(2);
-  } else {
-    // float the paddle
-    state.offset_paddle_y(-0.5);
+  // Draw the bubbles
+  for (int i = 0; i < state.bubbles.size(); i++) {
+    Bubble bubble = state.bubbles.get(i);
+    
+    // check if bubble is off the screen
+    if (bubble.pos_y + bubble.BUBBLE_SIZE < 0.0){
+      // remove the bubble
+      state.bubbles.remove(i);
+    } else {
+      bubble.draw();
+      bubble.step();
+    }
   }
 }
 
