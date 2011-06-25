@@ -61,7 +61,9 @@ void draw()
   fill(153);
   rect(width-dist_wall, state.paddle_y, state.paddle_width, state.paddle_height);
   
-  if (!state.keyIsDown) {
+  if (state.keyIsDown) {
+    state.offset_paddle_y(2);
+  } else {
     // float the paddle
     state.offset_paddle_y(-0.5);
   }
@@ -70,7 +72,6 @@ void draw()
 void keyPressed() {
   if (keyCode == DOWN) {
     state.keyIsDown = true;
-    state.offset_paddle_y(10);
   }
 }
 
