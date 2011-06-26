@@ -10,7 +10,7 @@ class Blobman {
   
   int size_w = 50;
   int size_h = 54;
-  float pos_y = 40;
+  float pos_y = (height - size_h) / 2;
   
   void draw(){
     image(eatingSprite, POS_X, pos_y, size_w, size_h);

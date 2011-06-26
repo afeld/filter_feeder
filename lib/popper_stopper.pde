@@ -21,7 +21,7 @@ void draw()
   
   if (state.keyIsDown) {
     state.blobman.move_y(FLOAT_EASING * state.ticksSincePress);
-  } else {
+  } else if (state.isRunning) {
     // float vertically
     state.blobman.move_y((state.ticksSincePress - (2 * state.ticksSinceRelease)) * FLOAT_EASING);
   }
@@ -33,7 +33,9 @@ void draw()
     state.bubbles.add(new Bubble(random(width * 1.5)));
   }
   
-  state.lowerTerrain.step(state.step_x);
+  if (state.isRunning){
+    state.lowerTerrain.step(state.step_x);
+  }
   
   // Draw the bubbles
   for (int i = 0; i < state.bubbles.size(); i++) {
@@ -50,7 +52,9 @@ void draw()
       state.bubbles.remove(i);
     } else {
       bubble.draw(state.bubbleImage);
-      bubble.step(state.step_x, state.bubble_step_y);
+      if (state.isRunning){
+        bubble.step(state.step_x, state.bubble_step_y);
+      }
     }
   }
   
@@ -59,7 +63,7 @@ void draw()
 }
 
 void keyPressed() {
-  if (keyCode == DOWN) {
+  if (keyCode == DOWN && state.isRunning) {
     if (!state.keyIsDown){
       state.ticksSincePress = 0;
       state.keyIsDown = true;
@@ -68,8 +72,16 @@ void keyPressed() {
 }
 
 void keyReleased(){
-  if (keyCode == DOWN) {
+  if (keyCode == DOWN && state.isRunning) {
     state.ticksSinceRelease = 0;
     state.keyIsDown = false;
+  }
+}
+
+void mouseClicked() {
+  if (!state.isRunning){
+    state.ticksSincePress = 0;
+    state.ticksSinceRelease = 0;
+    state.isRunning = true;
   }
 }

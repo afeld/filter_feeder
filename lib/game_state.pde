@@ -8,6 +8,7 @@ class GameState {
   long ticksSincePress = 0;
   long ticksSinceRelease = 0;
   
+  boolean isRunning = false;
   int score = 0;
   float step_x = 1;
   float bubble_step_y = 1;
