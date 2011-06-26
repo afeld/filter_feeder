@@ -1,3 +1,5 @@
+/* @pjs preload="images/Sea_BG_crop.png"; */
+
 import GameState;
 
 float FLOAT_EASING = 0.2;
@@ -17,7 +19,7 @@ void setup()
 
 void draw() 
 {
-  background(45, 145, 237);
+  background(loadImage("images/Sea_BG_crop.png"));
   
   if (state.keyIsDown) {
     state.blobman.move_y(FLOAT_EASING * state.ticksSincePress);

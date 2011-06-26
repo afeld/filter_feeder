@@ -1,3 +1,5 @@
+/* @pjs preload="images/Oil_bubble.png"; */
+
 class Bubble {
   float MAX_BUBBLE_SIZE = 40;
   float DAMPING = 0.9;
