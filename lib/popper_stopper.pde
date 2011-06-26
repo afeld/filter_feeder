@@ -43,7 +43,7 @@ void draw()
     
     if (state.blobman.bubbleInEatingRange(bubble)) {
       // eat the bubble
-      state.blobman.startEating();
+      state.blobman.startEating(bubble);
       state.score += 1;
       state.step_x += 0.2;
       state.bubble_step_y += 0.1;
@@ -52,7 +52,7 @@ void draw()
       // bubble is off the screen - remove it
       state.bubbles.remove(i);
     } else {
-      bubble.draw(state.bubbleImage);
+      bubble.draw();
       if (state.isRunning){
         bubble.step(state.step_x, state.bubble_step_y);
       }

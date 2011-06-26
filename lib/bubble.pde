@@ -1,6 +1,8 @@
 class Bubble {
   float MAX_BUBBLE_SIZE = 40;
   float DAMPING = 0.9;
+  PImage spriteImg = loadImage('images/Oil_bubble.png');
+  
   float accel_x;
   float accel_y;
   float velocity_x;
@@ -15,8 +17,8 @@ class Bubble {
     velocity_x = velocity_y = 0;
   }
 
-  void draw(PImage img) {
-    image(img, pos_x, pos_y, diameter, diameter);
+  void draw() {
+    image(spriteImg, pos_x, pos_y, diameter, diameter);
   }
 
   void step(float step_x, float step_y) {

@@ -13,8 +13,6 @@ class GameState {
   float step_x = 1;
   float bubble_step_y = 1;
   
-  PImage bubbleImage = loadImage('images/Oil_bubble.png');
-  
   Blobman blobman = new Blobman();
   ArrayList bubbles = new ArrayList();
   Terrain lowerTerrain = new Terrain();

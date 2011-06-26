@@ -17,9 +17,9 @@ class Blobman {
   int FRAME_DURATION = 4;
   
   HashMap sprites = new HashMap();
-  boolean _isEating = false;
   String mode = 'neutral';
   long ticksSinceEatStart = 0;
+  Bubble bubbleBeingEaten = null;
   
   int size_w = 50;
   int size_h = 54;
@@ -42,6 +42,9 @@ class Blobman {
   void draw(){
     // EAT: neutral - stroke - open 1-5 - Close 1-2 - stroke - neutral
     if (isEating()){
+      bubbleBeingEaten.draw();
+      bubbleBeingEaten.pos_x -= 1;
+      
       if (ticksSinceEatStart < FRAME_DURATION){
         mode = 'stroke';
       } else if (ticksSinceEatStart < FRAME_DURATION * 2){
@@ -60,7 +63,7 @@ class Blobman {
         mode = 'mouth_close2';
       } else {
         mode = 'neutral';
-        _isEating = false;
+        bubbleBeingEaten = null;
       }
     }
     PImage sprite = sprites.get(mode);
@@ -69,13 +72,17 @@ class Blobman {
     ticksSinceEatStart += 1;
   }
   
-  void startEating(){
-    _isEating = true;
+  void startEating(Bubble bubble){
+    // duplicate the bubble
+    bubbleBeingEaten = new Bubble(bubble.pos_x);
+    bubbleBeingEaten.pos_y = bubble.pos_y;
+    bubbleBeingEaten.diameter = bubble.diameter;
+    
     ticksSinceEatStart = 0;
   }
   
   boolean isEating(){
-    return _isEating;
+    return bubbleBeingEaten != null;
   }
   
   void move_y(offset) {
