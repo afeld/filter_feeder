@@ -42,7 +42,7 @@ void draw()
       // bubble is off the screen - remove it
       state.bubbles.remove(i);
     } else {
-      bubble.draw();
+      bubble.draw(state.bubbleImage);
       bubble.step();
     }
   }

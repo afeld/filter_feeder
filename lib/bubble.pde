@@ -17,9 +17,8 @@ class Bubble {
     velocity_x = velocity_y = 0;
   }
 
-  void draw() {
-    fill(255, 0, 0);
-    ellipse(pos_x, pos_y, diameter, diameter);
+  void draw(PImage img) {
+    image(img, pos_x, pos_y, diameter, diameter);
   }
 
   void step() {
