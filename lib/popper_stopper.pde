@@ -1,5 +1,7 @@
 import GameState;
 
+float FLOAT_EASING = 0.2;
+
 GameState state;
 
 void setup()
@@ -18,10 +20,10 @@ void draw()
   background(45, 145, 237);
   
   if (state.keyIsDown) {
-    state.blobman.move_y(5);
+    state.blobman.move_y(FLOAT_EASING * state.ticksSincePress);
   } else {
     // float vertically
-    state.blobman.move_y((-0.2 * state.ticksSinceRelease) + (0.2 * (state.ticksSincePress - state.ticksSinceRelease)));
+    state.blobman.move_y((state.ticksSincePress - (2 * state.ticksSinceRelease)) * FLOAT_EASING);
   }
   
   state.ticksSincePress += 1;
