@@ -7,7 +7,8 @@ class Blobman {
   float POS_X = 50;
   
   HashMap sprites = new HashMap();
-  String mode = 'neutral';
+  String _mode = 'neutral';
+  long ticksSinceEatStart = 0;
   
   int size_w = 50;
   int size_h = 54;
@@ -19,8 +20,25 @@ class Blobman {
   }
   
   void draw(){
-    PImage sprite = sprites.get(mode);
+    if (_mode == 'mouth_open' && ticksSinceEatStart > 10){
+      // stop eating
+      setMode('neutral');
+    }
+    PImage sprite = sprites.get(_mode);
     image(sprite, POS_X, pos_y, size_w, size_h);
+    
+    ticksSinceEatStart += 1;
+  }
+  
+  void setMode(String mode){
+    _mode = mode;
+    if (isEating()){
+      ticksSinceEatStart = 0;
+    }
+  }
+  
+  boolean isEating(){
+    return _mode != 'neutral';
   }
   
   void move_y(offset) {
