@@ -1,7 +1,5 @@
 class Bubble {
   float MAX_BUBBLE_SIZE = 40;
-  float BUBBLE_STEP_X = 0.8;
-  float BUBBLE_STEP_Y = 1.0;
   float DAMPING = 0.9;
   float accel_x;
   float accel_y;
@@ -21,7 +19,7 @@ class Bubble {
     image(img, pos_x, pos_y, diameter, diameter);
   }
 
-  void step() {
+  void step(float step_x, float step_y) {
     applyNoise();
 
     // float the bubble
@@ -35,7 +33,7 @@ class Bubble {
     velocity_y *= DAMPING;
 
 
-    applyFloat();
+    applyFloat(step_x, step_y);
 
     accel_x = accel_y = 0;
   }
@@ -52,8 +50,8 @@ class Bubble {
     accel_y += sin( angle ) * speed * 0.1;
   }
 
-  void applyFloat() {
-    pos_x -= BUBBLE_STEP_X;
-    pos_y -= BUBBLE_STEP_Y;
+  void applyFloat(float step_x, float step_y) {
+    pos_x -= step_x;
+    pos_y -= step_y;
   }
 }

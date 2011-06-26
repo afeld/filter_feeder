@@ -33,20 +33,24 @@ void draw()
     state.bubbles.add(new Bubble(random(width * 1.5)));
   }
   
-  state.lowerTerrain.step(0.8);
+  state.lowerTerrain.step(state.step_x);
   
   // Draw the bubbles
   for (int i = 0; i < state.bubbles.size(); i++) {
     Bubble bubble = state.bubbles.get(i);
     
     if (state.blobman.bubbleInEatingRange(bubble)) {
+      // eat the bubble
+      state.score += 1;
+      state.step_x += 0.2;
+      state.bubble_step_y += 0.1;
       state.bubbles.remove(i);
     } else if (bubble.pos_y + bubble.BUBBLE_SIZE < 0.0){
       // bubble is off the screen - remove it
       state.bubbles.remove(i);
     } else {
       bubble.draw(state.bubbleImage);
-      bubble.step();
+      bubble.step(state.step_x, state.bubble_step_y);
     }
   }
   
