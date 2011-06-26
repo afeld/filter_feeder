@@ -1,5 +1,5 @@
 class Bubble {
-  float BUBBLE_SIZE = 8.0;
+  float MAX_BUBBLE_SIZE = 40;
   float BUBBLE_STEP_X = 0.8;
   float BUBBLE_STEP_Y = 1.0;
   float DAMPING = 0.9;
@@ -9,6 +9,7 @@ class Bubble {
   float velocity_y;
   float pos_x;
   float pos_y = height;
+  float diameter = random(MAX_BUBBLE_SIZE * 0.2, MAX_BUBBLE_SIZE);
 
   Bubble(float start_x){
     pos_x = start_x;
@@ -18,7 +19,7 @@ class Bubble {
 
   void draw() {
     fill(255, 0, 0);
-    ellipse(pos_x, pos_y, BUBBLE_SIZE, BUBBLE_SIZE);
+    ellipse(pos_x, pos_y, diameter, diameter);
   }
 
   void step() {
