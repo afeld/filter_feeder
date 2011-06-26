@@ -5,15 +5,22 @@ class Blobman {
   float EATING_BOX_X = 10;
   float EATING_BOX_Y = 5;
   float POS_X = 50;
-  PImage neutralSprite = loadImage("images/Blobman_sprite_neutral.png");
-  PImage eatingSprite = loadImage("images/Blobman_sprite_mouthOpen5.png");
+  
+  HashMap sprites = new HashMap();
+  String mode = 'neutral';
   
   int size_w = 50;
   int size_h = 54;
   float pos_y = (height - size_h) / 2;
   
+  Blobman (){
+    sprites.put('neutral', loadImage("images/Blobman_sprite_neutral.png"));
+    sprites.put('mouth_open', loadImage("images/Blobman_sprite_mouthOpen5.png"));
+  }
+  
   void draw(){
-    image(eatingSprite, POS_X, pos_y, size_w, size_h);
+    PImage sprite = sprites.get(mode);
+    image(sprite, POS_X, pos_y, size_w, size_h);
   }
   
   void move_y(offset) {
