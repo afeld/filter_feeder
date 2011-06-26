@@ -21,13 +21,16 @@ void draw()
   
   if (state.keyIsDown) {
     state.blobman.move_y(FLOAT_EASING * state.ticksSincePress);
-  } else if (state.isRunning) {
+  } else if (state.isRunning && !state.blobman.isEating()) {
     // float vertically
     state.blobman.move_y((state.ticksSincePress - (2 * state.ticksSinceRelease)) * FLOAT_EASING);
   }
   
-  state.ticksSincePress += 1;
-  state.ticksSinceRelease += 1;
+  if (!state.blobman.isEating()){
+    // freeze while eating
+    state.ticksSincePress += 1;
+    state.ticksSinceRelease += 1;
+  }
   
   if (random(1) > 0.98) {
     state.bubbles.add(new Bubble(random(width * 1.5)));
