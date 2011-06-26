@@ -14,4 +14,13 @@ class Blobman {
     // Constrain vertical position to screen
     pos_y = constrain(pos_y + offset, size_h, height - size_h);
   }
+  
+  boolean bubbleInEatingRange(Bubble bubble) {
+    float mouth_x = POS_X + size_w;
+    boolean inEatingRange = bubble.pos_x >= mouth_x &&
+      bubble.pos_x < mouth_x + 10 &&
+      bubble.pos_y > pos_y &&
+      bubble.pos_y < pos_y + size_h;
+    return inEatingRange;
+  }
 }

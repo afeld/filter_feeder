@@ -32,9 +32,10 @@ void draw()
   for (int i = 0; i < state.bubbles.size(); i++) {
     Bubble bubble = state.bubbles.get(i);
     
-    // check if bubble is off the screen
-    if (bubble.pos_y + bubble.BUBBLE_SIZE < 0.0){
-      // remove the bubble
+    if (state.blobman.bubbleInEatingRange(bubble)) {
+      state.bubbles.remove(i);
+    } else if (bubble.pos_y + bubble.BUBBLE_SIZE < 0.0){
+      // bubble is off the screen - remove it
       state.bubbles.remove(i);
     } else {
       bubble.draw();
