@@ -64,6 +64,7 @@ class Blobman {
       } else {
         mode = 'neutral';
         bubbleBeingEaten = null;
+        finishedEating();
       }
     }
     PImage sprite = sprites.get(mode);

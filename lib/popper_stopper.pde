@@ -3,6 +3,7 @@
 import GameState;
 
 float FLOAT_EASING = 0.2;
+PFont fontA = loadFont("Arial");
 
 GameState state;
 
@@ -13,6 +14,7 @@ void setup()
   ellipseMode(CENTER_RADIUS);
   noStroke();
   smooth();
+  textFont(fontA, 32);
   
   state = new GameState();
 }
@@ -49,7 +51,6 @@ void draw()
     if (state.blobman.bubbleInEatingRange(bubble)) {
       // eat the bubble
       state.blobman.startEating(bubble);
-      state.score += 1;
       state.step_x += 0.2;
       state.bubble_step_y += 0.1;
       state.bubbles.remove(i);
@@ -66,6 +67,12 @@ void draw()
   
   state.blobman.draw();
   state.lowerTerrain.draw();
+  fill(0);
+  text(state.score, width - 40, 40);
+}
+
+void finishedEating(){
+  state.score += 1;
 }
 
 void keyPressed() {
