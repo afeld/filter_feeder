@@ -43,7 +43,7 @@ class Blobman {
     // EAT: neutral - stroke - open 1-5 - Close 1-2 - stroke - neutral
     if (isEating()){
       bubbleBeingEaten.draw();
-      bubbleBeingEaten.pos_x -= 1.2;
+      bubbleBeingEaten.pos_x -= 1.1;
       
       if (ticksSinceEatStart < FRAME_DURATION){
         mode = 'stroke';
@@ -78,7 +78,10 @@ class Blobman {
     
     bubbleBeingEaten = new Bubble(bubble.pos_x);
     bubbleBeingEaten.diameter = diameter;
-    bubbleBeingEaten.pos_y = pos_y + (size_h / 2) - (diameter / 2);
+    bubbleBeingEaten.pos_y = bubble.pos_y;
+    
+    // align center vertically with the bubble
+    pos_y = bubble.pos_y + ((diameter - size_h)  / 2);
     
     ticksSinceEatStart = 0;
   }
