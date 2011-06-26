@@ -15,22 +15,23 @@ void setup()
 
 void draw() 
 {
-  background(51);
+  background(45, 145, 237);
   
   if (state.keyIsDown) {
     state.blobman.move_y(5);
   } else {
     // float vertically
-    state.blobman.move_y(-3);
+    state.blobman.move_y((-0.2 * state.ticksSinceRelease) + (0.2 * (state.ticksSincePress - state.ticksSinceRelease)));
   }
+  
+  state.ticksSincePress += 1;
+  state.ticksSinceRelease += 1;
   
   if (random(1) > 0.98) {
     state.bubbles.add(new Bubble(random(width * 1.5)));
   }
   
   state.lowerTerrain.step(0.8);
-  
-  state.blobman.draw();
   
   // Draw the bubbles
   for (int i = 0; i < state.bubbles.size(); i++) {
@@ -47,15 +48,22 @@ void draw()
     }
   }
   
+  state.blobman.draw();
   state.lowerTerrain.draw();
 }
 
 void keyPressed() {
   if (keyCode == DOWN) {
-    state.keyIsDown = true;
+    if (!state.keyIsDown){
+      state.ticksSincePress = 0;
+      state.keyIsDown = true;
+    }
   }
 }
 
 void keyReleased(){
-  state.keyIsDown = false;
+  if (keyCode == DOWN) {
+    state.ticksSinceRelease = 0;
+    state.keyIsDown = false;
+  }
 }
