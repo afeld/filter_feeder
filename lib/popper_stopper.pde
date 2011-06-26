@@ -43,7 +43,7 @@ void draw()
     
     if (state.blobman.bubbleInEatingRange(bubble)) {
       // eat the bubble
-      state.blobman.setMode('mouth_open');
+      state.blobman.startEating();
       state.score += 1;
       state.step_x += 0.2;
       state.bubble_step_y += 0.1;
