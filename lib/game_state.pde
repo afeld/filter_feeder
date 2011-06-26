@@ -6,4 +6,5 @@ class GameState {
   
   Blobman blobman = new Blobman();
   ArrayList bubbles = new ArrayList();
+  Terrain lowerTerrain = new Terrain();
 }

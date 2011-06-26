@@ -1,6 +1,6 @@
 import GameState;
 
-GameState state = new GameState();
+GameState state;
 
 void setup()
 {
@@ -9,6 +9,8 @@ void setup()
   ellipseMode(CENTER_RADIUS);
   noStroke();
   smooth();
+  
+  state = new GameState();
 }
 
 void draw() 
@@ -26,6 +28,8 @@ void draw()
     state.bubbles.add(new Bubble(random(width * 1.5)));
   }
   
+  state.lowerTerrain.step(0.8);
+  
   state.blobman.draw();
   
   // Draw the bubbles
@@ -42,6 +46,8 @@ void draw()
       bubble.step();
     }
   }
+  
+  state.lowerTerrain.draw();
 }
 
 void keyPressed() {
